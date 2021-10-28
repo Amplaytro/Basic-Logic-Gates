@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOT Gate</title>
+    <h1 style="text-align: center">NOT Gate</h1>
+    <style>
+      body {
+      margin: 0;
+      overflow: hidden;
+      }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+      }
+      th {
+        text-align: center;
+      }
+      tr:nth-child(even) {
+        background-color: #D6EEEE;
+      }
+    </style>
+  </head>
+  <body>
+
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+    
+    <br><br>
+    <div style = "text-align: center">
+    <button id = "btn" onclick="initialise()">Reset</button>
+    <button id = "btn2" onclick="NOTgate(true)">Next</button>
+    </div>
+    <br>
+
+    <table style="width: 100; margin: auto">
+      <caption>Truth Table</caption>
+      <tr>
+        <th>Input A</th>
+        <th>Output</th>
+      </tr>
+      <tr>
+        <td id="r1c1"></td>
+        <td id="r1c2"></td>
+      </tr>
+      <tr>
+        <td id="r2c1"></td>
+        <td id="r2c2"></td>
+      </tr>
+    </table>
+    <br>
+
+    <div style = "margin-left: 600px">
+      <li id = "l1">Select gate from gate menu</li>
+      <li id = "l2">The NOT gate symbol and its truth table</li>
+      <li id = "l3">1 represents input HIGH</li>
+      <li id = "l4">0 represents input LOW</li> 
+    </div>
+
+   <script>
+      const canvas = document.querySelector('.myCanvas');
+      canvas.width = 500;
+      const ctx = canvas.getContext('2d');
+      function degToRad(degrees) {
+      return degrees * Math.PI / 180;
+      }
+      ctx.fillStyle = 'black';
+      ctx.font = '18px georgia';
+      ctx.fillText('Input A', 30, 95);
+      ctx.beginPath();
+      ctx.arc(210, 90, 10, degToRad(0), degToRad(360), true);
+      ctx.moveTo(100, 90);
+      ctx.lineTo(150, 90);
+      ctx.moveTo(150, 50);
+      ctx.lineTo(150, 130);
+      ctx.moveTo(150, 130);
+      ctx.lineTo(200, 90);
+      ctx.moveTo(150, 50);
+      ctx.lineTo(200, 90);
+      ctx.moveTo(220, 90);
+      ctx.lineTo(245, 90);
+      ctx.strokeStyle = 'black';
+      ctx.strokeRect(276, 76, 45, 30);
+      ctx.fillText('Output', 276, 56);
+      ctx.stroke();
+
+      let x=-1;
+      function initialise() {
+      x=-1;
+      document.getElementById("r1c1").innerHTML = "";
+      document.getElementById("r1c2").innerHTML = "";
+      document.getElementById("r2c1").innerHTML = "";
+      document.getElementById("r2c2").innerHTML = "";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.font = '18px georgia';
+      ctx.fillText('Input A', 30, 95);
+      ctx.beginPath();
+      ctx.arc(210, 90, 10, degToRad(0), degToRad(360), true);
+      ctx.moveTo(100, 90);
+      ctx.lineTo(150, 90);
+      ctx.moveTo(150, 50);
+      ctx.lineTo(150, 130);
+      ctx.moveTo(150, 130);
+      ctx.lineTo(200, 90);
+      ctx.moveTo(150, 50);
+      ctx.lineTo(200, 90);
+      ctx.moveTo(220, 90);
+      ctx.lineTo(245, 90);
+      ctx.strokeStyle = 'black';
+      ctx.strokeRect(276, 76, 45, 30);
+      ctx.fillText('Output', 276, 56);
+      ctx.stroke();
+      document.getElementById("l1").innerHTML = "Select gate from gate menu";
+      document.getElementById("l2").innerHTML = "The NOT gate symbol and its truth table";
+      document.getElementById("l3").innerHTML = "1 represents input HIGH";
+      document.getElementById("l4").innerHTML = "0 represents input LOW";
+     }
+
+      function NOTgate(manual) {
+
+        if (manual)
+          autorun = false;
+          x = x + 1;
+          switch(x) {
+            case 0:
+              document.getElementById("r1c1").innerHTML = "0";
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'black';
+              ctx.fillText('0', 100, 80);
+              document.getElementById("l1").innerHTML = "Input A is 0";
+              document.getElementById("l2").innerHTML = "";
+              document.getElementById("l3").innerHTML = "";
+              document.getElementById("l4").innerHTML = "";
+              break;
+            case 1:
+              document.getElementById("r1c2").innerHTML = "1";
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.fillStyle = 'black';
+              ctx.font = '18px georgia';
+              ctx.fillText('Input A', 30, 95);
+              ctx.beginPath();
+              ctx.arc(210, 90, 10, degToRad(0), degToRad(360), true);
+              ctx.moveTo(100, 90);
+              ctx.lineTo(150, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(150, 130);
+              ctx.moveTo(150, 130);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(220, 90);
+              ctx.lineTo(245, 90);
+              ctx.fillStyle = 'orange';
+              ctx.fillRect(276, 76, 45, 30);
+              ctx.fillStyle = 'black';
+              ctx.fillText('Output', 276, 56);
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'black';
+              ctx.fillText('0', 100, 80);
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'red';
+              ctx.fillText('1', 290, 100);
+              ctx.stroke();
+              document.getElementById("l1").innerHTML = "The output is 1";
+              document.getElementById("l2").innerHTML = "";
+              document.getElementById("l3").innerHTML = "";
+              document.getElementById("l4").innerHTML = "";
+              break;
+            case 2:
+              document.getElementById("r2c1").innerHTML = "1";
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.fillStyle = 'black';
+              ctx.font = '18px georgia';
+              ctx.fillText('Input A', 30, 95);
+              ctx.beginPath();
+              ctx.arc(210, 90, 10, degToRad(0), degToRad(360), true);
+              ctx.moveTo(100, 90);
+              ctx.lineTo(150, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(150, 130);
+              ctx.moveTo(150, 130);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(220, 90);
+              ctx.lineTo(245, 90);
+              ctx.strokeStyle = 'black';
+              ctx.strokeRect(276, 76, 45, 30);
+              ctx.fillText('Output', 276, 56);
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'black';
+              ctx.fillText('1', 100, 80);
+              ctx.stroke();
+              document.getElementById("l1").innerHTML = "Input A is 1";
+              document.getElementById("l2").innerHTML = "";
+              document.getElementById("l3").innerHTML = "";
+              document.getElementById("l4").innerHTML = "";
+              break;
+            case 3:
+              document.getElementById("r2c2").innerHTML = "0";
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.fillStyle = 'black';
+              ctx.font = '18px georgia';
+              ctx.fillText('Input A', 30, 95);
+              ctx.beginPath();
+              ctx.arc(210, 90, 10, degToRad(0), degToRad(360), true);
+              ctx.moveTo(100, 90);
+              ctx.lineTo(150, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(150, 130);
+              ctx.moveTo(150, 130);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(150, 50);
+              ctx.lineTo(200, 90);
+              ctx.moveTo(220, 90);
+              ctx.lineTo(245, 90);
+              ctx.fillStyle = 'orange';
+              ctx.fillRect(276, 76, 45, 30);
+              ctx.fillStyle = 'black';
+              ctx.fillText('Output', 276, 56);
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'black';
+              ctx.fillText('1', 100, 80);
+              ctx.font = '32px georgia';
+              ctx.fillStyle = 'red';
+              ctx.fillText('0', 290, 100);
+              ctx.stroke();
+              document.getElementById("l1").innerHTML = "The output is 0";
+              document.getElementById("l2").innerHTML = "";
+              document.getElementById("l3").innerHTML = "";
+              document.getElementById("l4").innerHTML = "";
+              break;
+          }
+      }
+    </script>
+  </body>
+</html>
